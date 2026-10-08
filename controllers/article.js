@@ -35,6 +35,25 @@ class articleController {
             article: {id: articleId, ...newArticle}
         })
     }
+
+        async updateArticle(req, res){
+        const articleId = req.params.id
+        const updatedArticle = {
+            name: req.body.name,
+            slug: req.body.slug,
+            image: req.body.image,
+            body: req.body.body,
+            author_id: req.body.author_id
+        }
+        const affectedRows = await articleModel.update(articleId, updatedArticle)
+        if (affectedRows === 0) {
+            return res.status(404).json({message: `article with id ${articleId} not found`})
+        }
+        res.status(200).json({
+            message: `updated article with id ${articleId}`,
+            article: {id: articleId, ...updatedArticle}
+        })
+    }
 }
 
 module.exports = articleController
