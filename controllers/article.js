@@ -14,6 +14,11 @@ class articleController {
             res.status(500).json({message: error.message})
         }
     }
+
+    async getArticleBySlug(req, res){
+        const article = await articleModel.findOne(req.params.slug)
+        res.status(201).json({article: article})
+    }
 }
 
 module.exports = articleController
