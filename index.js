@@ -12,6 +12,9 @@ const articleController = new articleControllerClass()
 const articleRoutes = require('./routes/articles');
 app.use('/', articleRoutes);
 
+const authorRoutes = require('./routes/authors');
+app.use('/', authorRoutes);
+
 
 // app start point
 app.listen(3025, () => {
